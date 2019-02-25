@@ -117,7 +117,7 @@
   /*height: 480px;*/
   /*width: 1519px;*/
   position: relative;
-  /*overflow: hidden;*/
+  overflow: hidden;
   /*background: url("../assets/images/swiper.jpg") no-repeat center;*/
   /*background-size: cover;*/
 
@@ -136,15 +136,18 @@
     bottom: 3%;
 
     li{
-      margin-left: 10px;
+      /*margin-left: 10px;*/
       display: inline-block;
-      width: 10px;
-      height: 2px;
+      width: 15px;
+      height: 3px;
       background-color: orange;
       cursor: pointer;
 
       &.active{
         background-color: #ccc;
+      }
+      &:nth-of-type(odd){
+        margin-left: 15px;
       }
     }
   }

@@ -1,3 +1,7 @@
+html,body{
+  font: 14px/1.5 Helvetica,Tahoma,Arial,"Hiraino Sans GB","Microsoft YaHei ",SimSun,Heiti,sans-serif;
+  color: #515151;
+}
 .fl{
   float: left;
 }
@@ -10,7 +14,7 @@
   clear: both;
 }
 .wrapper{
-  width: 1200px;
+  width: 1240px;
   margin: 0 auto;
   padding: 0 15px;
   box-sizing: border-box;

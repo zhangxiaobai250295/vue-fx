@@ -2,84 +2,12 @@
   <div class="footer">
     <div class="wrapper">
       <div class="footer-top clearfix">
-        <ul class="footer-service fl">
+        <ul class="footer-service fl" v-for="(item,index) in footerServiceData" :key="index">
           <li class="title">
-            <a href="">一加产品</a>
+            <a href="">{{item.title}}</a>
           </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-        </ul>
-        <ul class="footer-service fl">
-          <li class="title">
-            <a href="">一加产品</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-        </ul>
-        <ul class="footer-service fl">
-          <li class="title">
-            <a href="">一加产品</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-        </ul>
-        <ul class="footer-service fl">
-          <li class="title">
-            <a href="">一加产品</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
-          </li>
-          <li>
-            <a href="">OnePlus 6T</a>
+          <li v-for="(info,keys) in item.link" :key="keys">
+            <a :href="info.href">{{info.name}}</a>
           </li>
         </ul>
         <div class="online-service fr">
@@ -102,20 +30,8 @@
           </div>
           <div class="fr right">
             <ul>
-              <li class="item">
-                <a href="javascript:;">隐私政策</a>
-              </li>
-              <li>
-                <a href="javascript:;">隐私政策</a>
-              </li>
-              <li>
-                <a href="javascript:;">隐私政策</a>
-              </li>
-              <li>
-                <a href="javascript:;">隐私政策</a>
-              </li>
-              <li>
-                <a href="javascript:;">隐私政策</a>
+              <li class="item" v-for="(item,index) in externalLinkData" :key="index">
+                <a :href="item.href">{{item.name}}</a>
               </li>
             </ul>
           </div>
@@ -140,7 +56,27 @@
 
 <script>
   export default {
-    name: 'Footer'
+    name: 'Footer',
+    data () {
+      return {
+        footerServiceData: [],
+        externalLinkData: []
+      };
+    },
+    methods: {
+      async getFooterServiceData () {
+        const {data} = await this.axios.get('/api/footerService');
+        this.footerServiceData = data;
+      },
+      async getExternalLinkData () {
+        const {data} = await this.axios.get('/api/externalLink');
+        this.externalLinkData = data;
+      }
+    },
+    mounted () {
+      this.getFooterServiceData();
+      this.getExternalLinkData();
+    }
   };
 </script>
 
@@ -157,6 +93,10 @@
       width: 240px;
       padding: 0 15px;
       box-sizing: border-box;
+      /*li{*/
+        /*display: inline-block;*/
+        /*width: 240px;*/
+      /*}*/
       .title{
         font-size: 18px;
         a{

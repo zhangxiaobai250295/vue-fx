@@ -25,15 +25,15 @@
       <div class="wrapper">
         <div class="sale">
           <h3 class="title">OnePlus 6T 热销配件</h3>
-          <GoodsList></GoodsList>
+          <GoodsList :data="OnePlus6TData"></GoodsList>
         </div>
         <div class="sale">
           <h3 class="title">OnePlus 6 热销配件</h3>
-          <GoodsList></GoodsList>
+          <GoodsList :data="OnePlus6Data"></GoodsList>
         </div>
         <div class="sale">
           <h3 class="title">一加生活周边</h3>
-          <GoodsList></GoodsList>
+          <GoodsList :data="lifeData"></GoodsList>
         </div>
       </div>
     </div>
@@ -79,7 +79,10 @@
         showHeader: true,
         categoryData: [],
         swiperData: [],
-        postData: []
+        postData: [],
+        OnePlus6TData: [],
+        OnePlus6Data: [],
+        lifeData: []
       };
     },
     methods: {
@@ -103,6 +106,18 @@
       async getPostData () {
         const {data} = await this.axios.get('/api/post');
         this.postData = data;
+      },
+      async getOnePlus6TData () {
+        const {data} = await this.axios.get('/api/OnePlus6T');
+        this.OnePlus6TData = data;
+      },
+      async getOnePlus6Data () {
+        const {data} = await this.axios.get('/api/OnePlus6');
+        this.OnePlus6Data = data;
+      },
+      async getLifeData () {
+        const {data} = await this.axios.get('/api/life');
+        this.lifeData = data;
       }
     },
     mounted () {
@@ -110,6 +125,9 @@
       this.getCategoryData();
       this.getSwiperData();
       this.getPostData();
+      this.getOnePlus6TData();
+      this.getOnePlus6Data();
+      this.getLifeData();
     }
   };
 </script>

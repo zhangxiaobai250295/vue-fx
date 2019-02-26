@@ -1,59 +1,68 @@
 <template>
   <ul class="clearfix">
-    <li class="goods-item fl">
-      <img src="" alt="" class="goods-img">
-      <div class="goods-name">OnePlus 6T 悦耳套装</div>
-      <div class="goods-price">
-        <span>￥229.00</span><span class="oldPrice">248.00</span>
-      </div>
-      <div class="goods-color">
-        <img src="" alt="" class="color-item">
-        <img src="" alt="" class="color-item">
-      </div>
-      <div class="goods-new">9.3折</div>
+    <li class="goods-item fl" v-for="(item,index) in data" :key="index">
+      <a :href="item.href">
+        <img :src="item.goodsUrl" alt="" class="goods-img">
+        <div class="goods-name">{{item.goodsName}}</div>
+        <div class="goods-price">
+          <span>￥{{item.goodsPrice}}</span><span v-if="item.oldPrice" class="oldPrice">{{item.oldPrice}}</span>
+        </div>
+        <div v-if="item.color" class="goods-color">
+          <img :src="img" alt="" class="color-item" v-for="(img,list) in item.color" :key="list">
+        </div>
+        <div v-if="item.discount" class="goods-new">{{item.discount}}折</div>
+      </a>
     </li>
-    <li class="goods-item fl">
-      <img src="" alt="" class="goods-img">
-      <div class="goods-name">OnePlus 6T 悦耳套装</div>
-      <div class="goods-price">
-        <span>￥229.00</span><span class="oldPrice">248.00</span>
-      </div>
-      <div class="goods-color">
-        <img src="" alt="" class="color-item">
-        <img src="" alt="" class="color-item">
-      </div>
-      <div class="goods-new">9.3折</div>
-    </li>
-    <li class="goods-item fl">
-      <img src="" alt="" class="goods-img">
-      <div class="goods-name">OnePlus 6T 悦耳套装</div>
-      <div class="goods-price">
-        <span>￥229.00</span><span class="oldPrice">248.00</span>
-      </div>
-      <div class="goods-color">
-        <img src="" alt="" class="color-item">
-        <img src="" alt="" class="color-item">
-      </div>
-      <div class="goods-new">9.3折</div>
-    </li>
-    <li class="goods-item fl">
-      <img src="" alt="" class="goods-img">
-      <div class="goods-name">OnePlus 6T 悦耳套装</div>
-      <div class="goods-price">
-        <span>￥229.00</span><span class="oldPrice">248.00</span>
-      </div>
-      <div class="goods-color">
-        <img src="" alt="" class="color-item">
-        <img src="" alt="" class="color-item">
-      </div>
-      <div class="goods-new">9.3折</div>
-    </li>
+    <!--<li class="goods-item fl">-->
+      <!--<img src="" alt="" class="goods-img">-->
+      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
+      <!--<div class="goods-price">-->
+        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
+      <!--</div>-->
+      <!--<div class="goods-color">-->
+        <!--<img src="" alt="" class="color-item">-->
+        <!--<img src="" alt="" class="color-item">-->
+      <!--</div>-->
+      <!--<div class="goods-new">9.3折</div>-->
+    <!--</li>-->
+    <!--<li class="goods-item fl">-->
+      <!--<img src="" alt="" class="goods-img">-->
+      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
+      <!--<div class="goods-price">-->
+        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
+      <!--</div>-->
+      <!--<div class="goods-color">-->
+        <!--<img src="" alt="" class="color-item">-->
+        <!--<img src="" alt="" class="color-item">-->
+      <!--</div>-->
+      <!--<div class="goods-new">9.3折</div>-->
+    <!--</li>-->
+    <!--<li class="goods-item fl">-->
+      <!--<img src="" alt="" class="goods-img">-->
+      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
+      <!--<div class="goods-price">-->
+        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
+      <!--</div>-->
+      <!--<div class="goods-color">-->
+        <!--<img src="" alt="" class="color-item">-->
+        <!--<img src="" alt="" class="color-item">-->
+      <!--</div>-->
+      <!--<div class="goods-new">9.3折</div>-->
+    <!--</li>-->
   </ul>
 </template>
 
 <script>
   export default {
-    name: 'GoodsList'
+    name: 'GoodsList',
+    props: {
+      data: {
+        type: Array,
+        default () {
+          return [];
+        }
+      }
+    }
   };
 </script>
 
@@ -86,15 +95,17 @@
       display: inline-block;
       height: 183px;
       width: 183px;
-      background-color: deeppink;
+      /*background-color: deeppink;*/
     }
     .goods-name{
       font-size: 18px;
       margin-top: 20px;
       margin-bottom: 10px;
+      color: #10181f;
     }
     .goods-price{
       font-size: 16px;
+      color: #10181f;
       /*line-height: 16px;*/
 
       .oldPrice{
@@ -125,6 +136,7 @@
     .goods-color{
       margin-top: 5px;
       img{
+        margin-left: 5px;
         width: 100%;
         height: 100%;
       }

@@ -1,6 +1,6 @@
 <template>
   <ul class="clearfix">
-    <li class="goods-item fl" v-for="(item,index) in data" :key="index">
+    <li class="goods-item fl" v-for="(item,index) in data" :key="index" :class="{'last-child': (index+1) %4 === 0}">
       <a :href="item.href">
         <img :src="item.goodsUrl" alt="" class="goods-img">
         <div class="goods-name">{{item.goodsName}}</div>
@@ -13,42 +13,6 @@
         <div v-if="item.discount" class="goods-new">{{item.discount}}折</div>
       </a>
     </li>
-    <!--<li class="goods-item fl">-->
-      <!--<img src="" alt="" class="goods-img">-->
-      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
-      <!--<div class="goods-price">-->
-        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
-      <!--</div>-->
-      <!--<div class="goods-color">-->
-        <!--<img src="" alt="" class="color-item">-->
-        <!--<img src="" alt="" class="color-item">-->
-      <!--</div>-->
-      <!--<div class="goods-new">9.3折</div>-->
-    <!--</li>-->
-    <!--<li class="goods-item fl">-->
-      <!--<img src="" alt="" class="goods-img">-->
-      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
-      <!--<div class="goods-price">-->
-        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
-      <!--</div>-->
-      <!--<div class="goods-color">-->
-        <!--<img src="" alt="" class="color-item">-->
-        <!--<img src="" alt="" class="color-item">-->
-      <!--</div>-->
-      <!--<div class="goods-new">9.3折</div>-->
-    <!--</li>-->
-    <!--<li class="goods-item fl">-->
-      <!--<img src="" alt="" class="goods-img">-->
-      <!--<div class="goods-name">OnePlus 6T 悦耳套装</div>-->
-      <!--<div class="goods-price">-->
-        <!--<span>￥229.00</span><span class="oldPrice">248.00</span>-->
-      <!--</div>-->
-      <!--<div class="goods-color">-->
-        <!--<img src="" alt="" class="color-item">-->
-        <!--<img src="" alt="" class="color-item">-->
-      <!--</div>-->
-      <!--<div class="goods-new">9.3折</div>-->
-    <!--</li>-->
   </ul>
 </template>
 
@@ -68,7 +32,7 @@
 
 <style lang="less" scoped>
   .goods-item{
-    margin-top: 10px;
+    margin-top: 20px;
     width: 285px;
     height: 365px;
     background-color: #fff;
@@ -76,15 +40,16 @@
     box-sizing: border-box;
     text-align: center;
     position: relative;
-    margin-left: 23px;
+    margin-right: 23px;
     transition: all .3s;
+    overflow: hidden;
 
     &:hover{
       box-shadow: 0 15px 50px rgba(0,0,0,.3);
     }
 
-    &:first-child{
-      margin-left: 0;
+    &.last-child{
+      margin-right: 0;
     }
 
     img{

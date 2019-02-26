@@ -3,6 +3,7 @@ import App from './App';
 import router from './router';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import store from './store';
 // 引入重置的css和字体图标css和公共css
 import './assets/css/reset.css';
 import './assets/css/iconfont.css';
@@ -15,5 +16,6 @@ Vue.config.productionTip = false;
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 });

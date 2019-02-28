@@ -1,8 +1,8 @@
 <template>
   <div class="header-bottom" :class="{'hidden-bottom': !showHeader}">
     <ul class="nav-list">
-      <li v-for="(item,index) in categoryData" :key="index" class="list-item" :class="{'hidden-list-item': !showHeader}">
-        <a href="javascript:;" @click="goToCategory(item.name, item)">
+      <li v-for="(item,index) in categoryNavData" :key="index" class="list-item" :class="{'hidden-list-item': !showHeader}">
+        <a href="javascript:;" @click="goToCategory(item.id, item)">
           <transition name="img">
             <div class="img" :class="{'hidden-img': !showHeader}" v-show="showHeader"></div>
           </transition>
@@ -19,7 +19,7 @@
     data () {
       return {
         showHeader: true,
-        categoryData: []
+        categoryNavData: []
       };
     },
     methods: {
@@ -31,21 +31,23 @@
         }
         // console.log(scrollTop);
       },
-      async getCategoryData () {
+      async getCategoryNavData () {
         const { data } = await this.axios.get('/api/category');
-        this.categoryData = data;
+        this.categoryNavData = data;
         // console.log(data);
       },
-      goToCategory (name, data) {
+      goToCategory (id, data) {
+        // console.log(id);
+        console.log(111);
         this.$router.push({
-          path: '/Category/' + name
+          path: '/Category/' + id
         });
-        this.$store.commit('addData', data);
+        // this.$store.commit('addData', data);
       }
     },
     mounted () {
       window.addEventListener('scroll', this.handleScroll);
-      this.getCategoryData();
+      this.getCategoryNavData();
     }
   };
 </script>

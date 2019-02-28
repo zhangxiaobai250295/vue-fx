@@ -14,7 +14,7 @@ export default new Router({
       component: Index
     },
     {
-      path: '/category/:name',
+      path: '/category/:id',
       name: 'Category',
       component: Category,
       props: true

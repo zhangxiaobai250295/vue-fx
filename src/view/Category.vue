@@ -3,9 +3,9 @@
     <Header></Header>
     <CategoryNav></CategoryNav>
     <div class="container">
-      <img :src="categoryList.bannerUrl" alt="" class="banner">
+      <img :src="infoData.bannerUrl" alt="" class="banner">
       <div class="wrapper">
-        <GoodsList :data="categoryList.children"></GoodsList>
+        <GoodsList :data="infoData.children"></GoodsList>
       </div>
     </div>
     <Footer></Footer>
@@ -20,12 +20,28 @@
   import GoodsList from '../components/GoodsList';
   export default {
     name: 'Category',
-    props: ['name'],
+    props: ['id'],
     components: {
       Header, CategoryNav, Footer, GoodsList
     },
     computed: {
       ...mapState(['categoryList'])
+    },
+    data () {
+      return {
+        infoData: {}
+      };
+    },
+    methods: {
+      async getCategoryData (id) {
+        // console.log(id);
+        const { data } = await this.axios.get(`/api/category/${id}`);
+        this.infoData = data;
+        console.log(data);
+      }
+    },
+    mounted () {
+      this.getCategoryData(this.id);
     }
   };
 </script>

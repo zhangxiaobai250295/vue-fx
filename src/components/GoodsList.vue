@@ -63,10 +63,13 @@
       /*background-color: deeppink;*/
     }
     .goods-name{
-      font-size: 18px;
+      font-size: 16px;
       margin-top: 20px;
       margin-bottom: 10px;
       color: #10181f;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .goods-price{
       font-size: 16px;

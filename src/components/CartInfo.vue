@@ -142,6 +142,28 @@
         border: 1px solid #000;
         border-radius: 2px;
         background-color: white;
+        color: red;
+        z-index: 9;
+        position: relative;
+
+        &:before{
+          display: inline-block;
+          content: '';
+          height: 40px;
+          width: 0px;
+          background-color: #000;
+          vertical-align: middle;
+          position: absolute;
+          left: 0;
+          transition: width .3s;
+          z-index: -1;
+        }
+        &:hover{
+          color: #fff;
+        }
+        &:hover:before{
+          width: 182px;
+        }
       }
       .gopay{
         display: inline-block;
@@ -152,6 +174,27 @@
         border-radius: 2px;
         background-color: #eb0028;
         color: #fff;
+        position: relative;
+        z-index: 9;
+
+        &:before{
+          display: inline-block;
+          content: '';
+          height: 40px;
+          width: 0px;
+          background-color: #000;
+          vertical-align: middle;
+          position: absolute;
+          left: 0;
+          transition: width .3s;
+          z-index: -1;
+        }
+        &:hover{
+          color: #fff;
+        }
+        &:hover:before{
+          width: 182px;
+        }
       }
     }
   }

@@ -38,7 +38,6 @@
       },
       goToCategory (id, data) {
         // console.log(id);
-        console.log(111);
         this.$router.push({
           path: '/Category/' + id
         });

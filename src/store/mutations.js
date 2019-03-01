@@ -1,8 +1,9 @@
 const mutations = {
-  addData (state, payload) {
-    // state.categoryList = payload;
+  addDetailData (state, payload) {
+    state.detailData = payload;
     // let obj = JSON.stringify(payload);
-    // localStorage.categoryList = obj;
+    // localStorage.detailData = obj;
+    console.log(payload);
   }
 };
 

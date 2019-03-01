@@ -1,6 +1,6 @@
 <template>
   <ul class="clearfix">
-    <li class="goods-item fl" v-for="(item,index) in data" :key="index" :class="{'last-child': (index+1) %4 === 0}">
+    <li @click="clickItem(item)" class="goods-item fl" v-for="(item,index) in data" :key="index" :class="{'last-child': (index+1) %4 === 0}">
       <a :href="item.href">
         <img :src="item.goodsUrl" alt="" class="goods-img">
         <div class="goods-name">{{item.goodsName}}</div>
@@ -8,7 +8,7 @@
           <span>￥{{item.goodsPrice}}</span><span v-if="item.oldPrice" class="oldPrice">{{item.oldPrice}}</span>
         </div>
         <div v-if="item.color" class="goods-color">
-          <img :src="img" alt="" class="color-item" v-for="(img,list) in item.color" :key="list">
+          <img :src="img.imgUrl" alt="" class="color-item" v-for="(img,list) in item.color" :key="list">
         </div>
         <div v-if="item.discount" class="goods-new">{{item.discount}}折</div>
       </a>
@@ -25,6 +25,11 @@
         default () {
           return [];
         }
+      }
+    },
+    methods: {
+      clickItem (item) {
+        this.$emit('clickItem', item);
       }
     }
   };

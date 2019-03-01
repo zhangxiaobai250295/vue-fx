@@ -5,7 +5,7 @@
     <div v-if="id != 6"  class="container">
       <img :src="infoData.bannerUrl" alt="" class="banner">
       <div class="wrapper">
-        <GoodsList :data="infoData.children"></GoodsList>
+        <GoodsList @clickItem="goToDetail" :data="infoData.children"></GoodsList>
       </div>
     </div>
     <div v-if="id == 6" class="life">
@@ -54,6 +54,19 @@
         const { data } = await this.axios.get('/api/queryList');
         this.queryListData = data;
         // console.log(data);
+      },
+      goToDetail (item) {
+        // console.log(item.id);
+        this.$router.push({
+          name: 'Detail',
+          params: {
+            name: item.id
+          }
+        });
+        // this.$router.push({
+        //   path: '/Detail/' + item.id
+        // });
+        this.$store.commit('addDetailData', item);
       }
     },
     mounted () {

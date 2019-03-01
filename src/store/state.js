@@ -5,11 +5,12 @@
 // const state = {
 //   categoryList: defaultData
 // };
-// let defaultData = {};
-// let data = JSON.parse(localStorage.categoryList);
-// defaultData = data;
+
+// let defaultDetailData = {};
+// let data = JSON.parse(localStorage.detailData);
+// defaultDetailData = data;
 const state = {
-  // categoryList: defaultData
+  detailData: {}
 };
 
 export default state;

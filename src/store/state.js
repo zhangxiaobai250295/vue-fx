@@ -10,7 +10,8 @@
 // let data = JSON.parse(localStorage.detailData);
 // defaultDetailData = data;
 const state = {
-  detailData: {}
+  detailData: {},
+  commentsCopy: []
 };
 
 export default state;

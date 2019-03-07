@@ -4,42 +4,40 @@
     <div class="content clearfix">
       <div class="img fl">
         <div class="big-img">
-          <img src="" alt="" >
+          <img :src="this.bigImg[imgIndex]" alt="" >
           <div class="arrow clearfix">
-            <span class="iconfont left fl">&#xe62a;</span>
-            <span class="iconfont right fr">&#xe628;</span>
+            <span class="iconfont left fl" @click="up">&#xe62a;</span>
+            <span class="iconfont right fr" @click="next">&#xe628;</span>
           </div>
         </div>
         <ul>
-          <li class="small-img">
-            <img src="" alt="">
-          </li>
-          <li class="small-img">
-            <img src="" alt="">
-          </li>
-          <li class="small-img">
-            <img src="" alt="">
+          <li class="small-img" v-for="(item,index) in this.bigImg" :key="index" :class="{'active': index === imgIndex}">
+            <img :src="item" alt="" @click="changeIndex(index)">
           </li>
         </ul>
       </div>
       <div class="info fl">
-        <h3 class="name">OnePlus 6T 全包保护壳 尼龙</h3>
-        <p class="price">￥144.00</p>
+        <h3 class="name">{{detailData.goodsName}}</h3>
+        <p class="price">￥{{detailData.goodsPrice}}</p>
         <div class="color">
           <p class="title">颜色</p>
           <ul>
-            <li class="item">
-              <a href=""></a>
-            </li>
-            <li class="item">
-              <a href=""></a>
-            </li>
-            <li class="item">
-              <a href=""></a>
+            <li class="item" @click="clickImg(item.child)" v-for="(item,index) in detailData.color" :key="index">
+              <img :src="item.imgUrl" alt="">
             </li>
           </ul>
         </div>
         <a href="" class="btn">加入购物车</a>
+      </div>
+    </div>
+    <div class="about">
+      <ul class="title">
+        <li class="item"><a href="javascript:;"  @click="showInfo" :class="{'disabled': this.dis,'active':this.showInfoData}">详情</a></li>
+        <li class="item"><a href="javascript:;" @click="showInfos" :class="{'disabled': !this.dis,'active':this.showInfoDatas}">评论</a></li>
+      </ul>
+      <div class="about-content">
+        <DetailInfo :data="detailData.details[0]" v-if="this.showInfoData"></DetailInfo>
+        <Comment :data="detailData.comments"  v-if="this.showInfoDatas"></Comment>
       </div>
     </div>
     <Footer></Footer>
@@ -50,13 +48,69 @@
   import { mapState } from 'vuex';
   import Header from '../components/Header';
   import Footer from '../components/Footer';
+  import DetailInfo from '../components/DetailInfo';
+  import Comment from '../components/Comment';
   export default {
     name: 'Detail',
+    data () {
+      return {
+        bigImg: [],
+        imgIndex: 0,
+        showInfoData: true,
+        showInfoDatas: false,
+        dis: true
+      };
+    },
     components: {
-      Header, Footer
+      Header, Footer, DetailInfo, Comment
     },
     computed: {
-      ...mapState(['detailData'])
+      ...mapState(['detailData', 'commentsCopy'])
+    },
+    methods: {
+      clickImg (data) {
+        // console.log(data);
+        this.bigImg = data;
+      },
+      defaultColorData () {
+        this.bigImg = this.detailData.color[0].child;
+        // console.log(this.detailData.color[0].child);
+        // console.log(this.detailData);
+      },
+      changeIndex (index) {
+        this.imgIndex = index;
+        // console.log(index);
+      },
+      next () {
+        this.imgIndex++;
+        if (this.imgIndex >= this.detailData.color[0].child.length) {
+          this.imgIndex = 0;
+        }
+      },
+      up () {
+        this.imgIndex--;
+        if (this.imgIndex < 0) {
+          this.imgIndex = this.detailData.color[0].child.length - 1;
+        }
+      },
+      showInfo () {
+        this.showInfoData = true;
+        this.showInfoDatas = false;
+        this.dis = true;
+      },
+      showInfos () {
+        this.showInfoDatas = true;
+        this.showInfoData = false;
+        this.dis = false;
+      },
+      defaultCommentsCopy () {
+        // this.commentsCopy = [].concat(this.detailData.comments);
+        // console.log(this.commentsCopy);
+      }
+    },
+    mounted () {
+      this.defaultColorData();
+      this.defaultCommentsCopy();
     }
   };
 </script>
@@ -70,7 +124,7 @@
   .img{
     width: 888px;
     height: 885px;
-    background-color: pink;
+    /*background-color: pink;*/
     vertical-align: middle;
     position: relative;
 
@@ -78,10 +132,15 @@
       display: inline-block;
       width: 759px;
       height: 759px;
-      background-color: orange;
+      /*background-color: orange;*/
       position: absolute;
       right: 0;
       top: 50px;
+
+      img{
+        width: 100%;
+        height: 100%;
+      }
 
       .arrow{
         padding: 0 50px;
@@ -99,15 +158,24 @@
       }
     }
     ul{
-      background-color: #fff;
+      background: #f7f7f7;
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
       .small-img{
         width: 70px;
         height: 70px;
-        background-color: red;
-        box-shadow: 0 15px 50px rgba(0,0,0,.3);
+        /*background-color: red;*/
+        box-shadow: 0 0px 1px rgba(0, 0, 0, 0.3);
+
+        &.active{
+          background: #fff;
+        }
+
+        img{
+          height: 100%;
+          width: 100%;
+        }
       }
     }
   }
@@ -139,17 +207,18 @@
       .item{
         display: inline-block;
         margin-left: 15px;
-
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: deeppink;
         &:first-child{
           margin-left: 0;
         }
-
-        a{
+        img{
           display: inline-block;
-          width: 20px;
-          height: 20px;
+          width: 100%;
+          height: 100%;
           border-radius: 50%;
-          background-color: deeppink;
         }
       }
     }
@@ -165,6 +234,36 @@
       color: #fff;
       border: 1px solid #d70226;
     }
+  }
+}
+
+.about{
+  .title{
+    text-align: center;
+    height: 60px;
+    line-height: 60px;
+    /*border-bottom: 1px solid #ccc;*/
+    .item{
+      display: inline-block;
+      width: 80px;
+
+      a{
+        padding: 20px;
+        font-size: 18px;
+        font-weight: 400;
+        color: #999;
+        /*pointer-events: none;*/
+        &.active{
+          color: #10181f;
+        }
+        &.disabled{
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .about-content{
+
   }
 }
 </style>

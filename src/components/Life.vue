@@ -76,6 +76,7 @@
         this.activeChange = {};
         this.activeIndex = index;
         this.$set(this.activeChange, key, key);
+        // console.log(this.activeChange);
         // this.$emit('filter', this.activeChange);
         // console.log(this.data.materials);
         this.data.materials = [].concat(this.materialsCopy);

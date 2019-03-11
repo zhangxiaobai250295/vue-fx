@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-
+    <Service></Service>
     <Footer></Footer>
   </div>
 </template>
@@ -37,11 +37,12 @@
   import Swiper from '../components/Swiper';
   import GoodsList from '../components/GoodsList';
   import Footer from '../components/Footer';
+  import Service from '../components/Service';
 
   export default {
     name: 'index',
     components: {
-      Header, Swiper, GoodsList, Footer, CategoryNav
+      Header, Swiper, GoodsList, Footer, CategoryNav, Service
     },
     data () {
       return {

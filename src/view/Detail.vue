@@ -27,7 +27,7 @@
             </li>
           </ul>
         </div>
-        <a href="" class="btn">加入购物车</a>
+        <a href="javascript:;" class="btn" @click="addShopcart">加入购物车</a>
       </div>
     </div>
     <div class="about">
@@ -40,6 +40,7 @@
         <Comment :data="detailData.comments"  v-if="this.showInfoDatas"></Comment>
       </div>
     </div>
+    <Service></Service>
     <Footer></Footer>
   </div>
 </template>
@@ -50,6 +51,7 @@
   import Footer from '../components/Footer';
   import DetailInfo from '../components/DetailInfo';
   import Comment from '../components/Comment';
+  import Service from '../components/Service';
   export default {
     name: 'Detail',
     data () {
@@ -62,7 +64,7 @@
       };
     },
     components: {
-      Header, Footer, DetailInfo, Comment
+      Header, Footer, DetailInfo, Comment, Service
     },
     computed: {
       ...mapState(['detailData', 'commentsCopy'])
@@ -103,14 +105,22 @@
         this.showInfoData = false;
         this.dis = false;
       },
-      defaultCommentsCopy () {
-        // this.commentsCopy = [].concat(this.detailData.comments);
-        // console.log(this.commentsCopy);
+      addShopcart () {
+        let num = 1;
+        this.$store.commit('addShopcart', {
+          data: this.detailData,
+          num: parseInt(num)
+        });
+        this.goToShopcart();
+      },
+      goToShopcart () {
+        this.$router.push({
+          name: 'Shopcart'
+        });
       }
     },
     mounted () {
       this.defaultColorData();
-      this.defaultCommentsCopy();
     }
   };
 </script>

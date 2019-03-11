@@ -4,6 +4,7 @@ import Router from 'vue-router';
 import Index from '../view/index';
 import Category from '../view/Category';
 import Detail from '../view/Detail';
+import Shopcart from '../view/Shopcart';
 
 Vue.use(Router);
 
@@ -25,6 +26,11 @@ export default new Router({
       name: 'Detail',
       component: Detail,
       props: true
+    },
+    {
+      path: '/shopcart',
+      name: 'Shopcart',
+      component: Shopcart
     }
   ]
 });

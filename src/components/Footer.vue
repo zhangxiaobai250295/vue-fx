@@ -1,27 +1,5 @@
 <template>
   <div class="footer">
-    <div class="service">
-      <ul class="wrapper clearfix">
-        <li class="service-item fl">
-          <a href="">
-            <span class="bag"></span>
-            <p class="dsc">7天无理由退货</p>
-          </a>
-        </li>
-        <li class="service-item fl">
-          <a href="">
-            <span class="bag"></span>
-            <p class="dsc">7天无理由退货</p>
-          </a>
-        </li>
-        <li class="service-item fl">
-          <a href="">
-            <span class="bag"></span>
-            <p class="dsc">7天无理由退货</p>
-          </a>
-        </li>
-      </ul>
-    </div>
     <div class="wrapper">
       <div class="footer-top clearfix">
         <ul class="footer-service fl" v-for="(item,index) in footerServiceData" :key="index">
@@ -105,34 +83,8 @@
 <style lang="less" scoped>
 .footer{
   background-color: #fcfcfc;
-  .service{
-    background-color: #fff;
-
-    .service-item{
-      padding: 35px 0;
-      box-sizing: border-box;
-      width: 33.33333%;
-      height: 195px;
-      /*background-color: aqua;*/
-      text-align: center;
-
-      .bag{
-        display: inline-block;
-        width: 80px;
-        height: 80px;
-        /*background-color: deeppink;*/
-        background-image: url("../assets/images/service.png");
-        background-repeat: no-repeat;
-      }
-      .dsc{
-        margin-top: 30px;
-        font-size: 16px;
-        color: #10181f;
-      }
-    }
-  }
   .footer-top{
-    border-top: 1px solid #ccc;
+    /*border-top: 1px solid #ccc;*/
     padding: 20px 0;
     box-sizing: border-box;
 

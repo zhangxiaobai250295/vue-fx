@@ -11,7 +11,8 @@
 // defaultDetailData = data;
 const state = {
   detailData: {},
-  commentsCopy: []
+  commentsCopy: [],
+  shopcartData: []
 };
 
 export default state;

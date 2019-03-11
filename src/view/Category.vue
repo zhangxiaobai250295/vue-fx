@@ -11,6 +11,7 @@
     <div v-if="id == 6" class="life">
       <Life :data="infoData" :materialsCopy="materials"></Life>
     </div>
+    <Service></Service>
     <Footer></Footer>
   </div>
 </template>
@@ -22,11 +23,12 @@
   import Footer from '../components/Footer';
   import GoodsList from '../components/GoodsList';
   import Life from '../components/Life';
+  import Service from '../components/Service';
   export default {
     name: 'Category',
     props: ['id'],
     components: {
-      Header, CategoryNav, Footer, GoodsList, Life
+      Header, CategoryNav, Footer, GoodsList, Life, Service
     },
     computed: {
       ...mapState(['categoryList'])

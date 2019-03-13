@@ -1,27 +1,28 @@
 <template>
   <div class="info">
-    <div class="cart-empty" hidden>
+    <div class="cart-empty" v-if="data.length <=0 ">
       <div class="empty-top"><p>您的购物车里面没有商品</p></div>
       <div class="empty-bottom">
         <a href="javascript:;" class="btn">去购物</a>
       </div>
     </div>
-    <div class="cart-info" hidden>
-      <div class="info-top"><span>已选择</span><span>1</span>件商品</div>
+    <div class="cart-info" v-if="data.length >0 ">
+      <div class="info-top"><span>已选择</span><span>{{this.shopcartTotal}}</span>件商品</div>
       <div class="info-content ">
-        <div class="item clearfix">
-          <img src="" alt="" class="img fl">
+        <div class="item clearfix" v-for="(item,index) in data" :key="index">
+          <img :src="item.goodsUrl" alt="" class="img fl">
           <div class="fl">
-            <p >oneplus <span>亮黑8g+128g</span></p>
-            <p>￥3.599.00 <span class="fr">x1</span></p>
+            <!--<p >oneplus <span>亮黑8g+128g</span></p>-->
+            <p >{{item.goodsName}}</p>
+            <p>￥{{item.goodsPrice}} <span class="fr">x{{item.count}}</span></p>
           </div>
         </div>
       </div>
       <div class="info-bottom">
-        <p class="total">总价 <span>￥3,599.00</span></p>
+        <p class="total">总价 <span>￥{{this.totalGoodsPrice}}</span></p>
         <p class="mail">支持免邮</p>
-        <a href="" class="gocart">去购物车</a>
-        <a href="" class="gopay">去付款</a>
+        <a href="javascript:;" class="gocart" @click="goToCart">去购物车</a>
+        <a href="javascript:;" class="gopay" @click="goToOrder">去付款</a>
       </div>
     </div>
   </div>
@@ -29,8 +30,35 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   export default {
-    name: 'CartInfo'
+    name: 'CartInfo',
+    props: {
+      data: {
+        type: Array,
+        default () {
+          return [];
+        }
+      }
+    },
+    computed: {
+      ...mapGetters([
+        'totalGoodsPrice',
+        'shopcartTotal'
+      ])
+    },
+    methods: {
+      goToCart () {
+        this.$router.push({
+          name: 'Shopcart'
+        });
+      },
+      goToOrder () {
+        this.$router.push({
+          name: 'Order'
+        });
+      }
+    }
   };
 </script>
 
@@ -115,7 +143,7 @@
         display: inline-block;
         width: 65px;
         height: 65px;
-        background-color: orange;
+        /*background-color: orange;*/
         margin-right: 20px;
         vertical-align: middle;
       }

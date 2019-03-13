@@ -44,7 +44,7 @@ const mutations = {
       Vue.set(obj.data, 'count', obj.num);
       state.shopcartData.push(obj.data);
     }
-    console.log(state.shopcartData);
+    // console.log(state.shopcartData);
   },
   increaseShopcart (state, id) {
     state.shopcartData.forEach(item => {
@@ -67,6 +67,9 @@ const mutations = {
         state.shopcartData.splice(index, 1);
       }
     });
+  },
+  REMOVE_GOODS (state) {
+    state.shopcartData = [];
   }
 };
 

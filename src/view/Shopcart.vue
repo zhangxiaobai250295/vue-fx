@@ -131,7 +131,7 @@
       },
       gotoPay () {
         this.$router.push({
-          name: 'pay'
+          name: 'Order'
         });
       },
       addShopcart (data) {

@@ -12,6 +12,16 @@ const getters = {
       total += item.count;
     });
     return total;
+  },
+  shopGoodsList (state) {
+    let arr = [];
+    state.shopcartData.forEach(item => {
+      let list = item.goodsName + 'x' + item.count;
+      arr.push(list);
+    });
+    // console.log(arr);
+    let str = arr.join(',');
+    return str;
   }
 };
 

@@ -16,8 +16,8 @@
             <Search @close="hiddenSearch = true" v-show="!hiddenSearch"></Search>
           </div>
           <div class="fr cart" v-show="hiddenSearch">
-            <span class="iconfont">&#xe635;</span>
-            <CartInfo></CartInfo>
+            <span class="iconfont icon">&#xe635;</span>
+            <CartInfo :data="shopcartData" class="active"></CartInfo>
           </div>
           <div class="fr user" v-show="hiddenSearch">
             <span class="iconfont">&#xe64d;</span>
@@ -32,12 +32,16 @@
 </template>
 
 <script>
+  import { mapState } from 'vuex';
   import CartInfo from './CartInfo';
   import Search from './Search';
   export default {
     name: 'Header',
     components: {
       CartInfo, Search
+    },
+    computed: {
+      ...mapState(['shopcartData'])
     },
     data () {
       return {
@@ -83,6 +87,13 @@
     .header-right{
       .cart{
         position: relative;
+
+        .active{
+          display: none;
+        }
+        &:hover .active{
+          display: block;
+        }
       }
       .Search{
         position: relative;

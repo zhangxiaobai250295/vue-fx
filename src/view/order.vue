@@ -43,7 +43,7 @@
           <p class="desc">感谢加油的支持，订单支付后预计在48小时内为您发货</p>
         </div>
         <div class="goods-list">
-          <p class="title">商品清单</p>
+          <p class="title clearfix">商品清单<span class="fr">共{{this.shopcartTotal}}件商品</span></p>
           <ul class="goods-wrap">
             <li class="goods-item" v-for="(item,index) in shopcartData" :key="index">
               <div class="img">
@@ -53,13 +53,13 @@
                 <p>{{item.goodsName}}</p>
               </div>
               <div class="price">
-                <p>{{item.goodsPrice}}</p>
+                <p>￥{{item.goodsPrice}}</p>
               </div>
               <div class="num">
                 x<span>{{item.count}}</span>
               </div>
               <div class="total-price">
-                <span>{{item.goodsPrice * item.count}}</span>
+                <span>￥{{item.goodsPrice * item.count}}</span>
               </div>
             </li>
           </ul>
@@ -118,7 +118,8 @@
       ...mapState(['shopcartData']),
       ...mapGetters([
         'totalGoodsPrice',
-        'shopGoodsList'
+        'shopGoodsList',
+        'shopcartTotal'
       ])
     },
     methods: {

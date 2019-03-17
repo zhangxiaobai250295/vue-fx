@@ -2,14 +2,14 @@
   <div>
     <div class="search clearfix">
       <span class="iconfont fl left">&#xe617;</span>
-      <input type="text " class="content fl">
+      <input type="text " class="content fl" placeholder="搜索商品名称">
       <span class="iconfont fr right" @click="$emit('close')">&#xe609;</span>
     </div>
     <ul class="hotsale">
-      <li><a href="">ssss</a></li>
-      <li><a href="">ssss</a></li>
-      <li><a href="">ssss</a></li>
-      <li><a href="">ssss</a></li>
+      <li><a href="">一加银耳2T</a></li>
+      <li><a href="">一加手机6T 3D钢化玻璃保护膜（黑色）</a></li>
+      <li><a href="">一加手机6T 芳纶纤维全包保护壳</a></li>
+      <li><a href="">OnePlus 6T 硅胶保护壳（红色）</a></li>
     </ul>
   </div>
 
@@ -62,7 +62,9 @@
   li{
     cursor: pointer;
     text-indent: 60px;
-
+    a{
+      color: #000;
+    }
     &:hover{
       background-color: #f1f1f1;
     }

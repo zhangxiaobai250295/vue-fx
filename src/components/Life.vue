@@ -4,8 +4,8 @@
         <img :src="data.bannerUrl" alt="">
       </div>
       <div class="hot-sale clearfix">
-        <ul class="fl" v-for="(item,index) in data.hotSale" :key="index">
-          <li class="sale-item">
+        <ul class="fl item-wrap" :class="{weizhi: item.weizhi}" v-for="(item,index) in data.hotSale" :key="index">
+          <li class="sale-item" :class="{'weizhi-item': item.weizhi}">
             <div class="info">
               <h2 class="name">{{item.goodsName}}</h2>
               <p class="desc">{{item.describe}}</p>
@@ -29,7 +29,7 @@
           </li>
         </ul>
         <ul class="goods">
-          <li class="goods-item" v-for="(item,index) in data.materials" :key="index">
+          <li class="goods-item" @click="goToDetail(item)" v-for="(item,index) in data.materials" :key="index">
             <a :href="item.href" class="img">
               <img :src="item.goodsUrl" alt="">
             </a>
@@ -88,7 +88,25 @@
             return item.material.indexOf(this.activeChange[key]) >= 0;
           });
         });
+      },
+      goToDetail (item) {
+        console.log(item);
+        this.$router.push({
+          path: '/Detail/' + item.id
+        });
+        this.$store.commit('addDetailData', item);
+        // this.$router.push({
+        //   name: 'Detail',
+        //   params: {
+        //     name: item.id
+        //   }
+        // });
+        // this.$store.commit('addDetailData', item);
+        // console.log(111);
       }
+      // goTode () {
+      //   console.log(111);
+      // }
     },
     mounted () {
       this.getQueryListData();
@@ -106,10 +124,27 @@
     }
   }
   .hot-sale{
-
+    .item-wrap{
+      /*display: inline-block;*/
+      width: 33.333%;
+      /*position: relative;*/
+    }
+    .weizhi{
+      position: relative;
+    }
+    .weizhi-item{
+      position: absolute;
+      /*min-width: 506px;*/
+      top: 427px;
+    }
     .sale-item{
-      width: 506px;
+      /*width: 506px;*/
+      /*display: inline-block;*/
+      display: block;
+      width: 100%;
+      /*min-width: 506px;*/
       height: 427px;
+      min-height: 427px;
       text-align: center;
       box-sizing: border-box;
 
@@ -121,16 +156,19 @@
           color: #10181f;
           font-size: 24px;
           padding-bottom: 10px;
+          box-sizing: border-box;
           font-weight: 400;
         }
         .desc{
           font-size: 18px;
           color: #a3a3a3;
           padding-bottom: 70px;
+          box-sizing: border-box;
         }
         .price{
           font-size: 24px;
           padding-bottom: 8px;
+          box-sizing: border-box;
         }
         .btn{
           display: inline-block;
@@ -144,9 +182,14 @@
         }
       }
       .img{
-        img{
-          width: 100%;
-          height: 100%;
+        a{
+          display: block;
+          /*width: 100%;*/
+          height: 427px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
         }
       }
       /*background-color: orange;*/

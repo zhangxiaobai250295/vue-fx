@@ -59,15 +59,15 @@
       },
       goToDetail (item) {
         // console.log(item.id);
-        this.$router.push({
-          name: 'Detail',
-          params: {
-            name: item.id
-          }
-        });
         // this.$router.push({
-        //   path: '/Detail/' + item.id
+        //   name: 'Detail',
+        //   params: {
+        //     name: item.id
+        //   }
         // });
+        this.$router.push({
+          path: '/Detail/' + item.id
+        });
         this.$store.commit('addDetailData', item);
       }
     },

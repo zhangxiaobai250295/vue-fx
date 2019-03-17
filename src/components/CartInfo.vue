@@ -66,6 +66,7 @@
   .cart-empty {
     background-color: white;
     position: absolute;
+    z-index: 999;
     text-align: center;
     top: 60px;
     right: -70px;
@@ -110,6 +111,7 @@
     padding-bottom: 15px;
     background-color: white;
     position: absolute;
+    z-index: 999;
     text-align: center;
     top: 60px;
     right: -70px;

@@ -148,14 +148,17 @@
     width: 100%;
     padding: 0;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
+    /*transition: all .1s linear;*/
   }
   .hidden-list-item{
     height: 53px !important;
     line-height: 53px;
+    /*transition: all .1s linear;*/
   }
   .hidden-img{
-    height: 0;
-    width: 0;
+    /*height: 0;*/
+    /*width: 0;*/
+    display: none;
   }
   .hidden-p{
     margin-top: 0 !important;

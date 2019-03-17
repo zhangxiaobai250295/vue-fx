@@ -19,7 +19,7 @@
       <div class="info fl">
         <h3 class="name">{{detailData.goodsName}}</h3>
         <p class="price">￥{{detailData.goodsPrice}}</p>
-        <div class="color">
+        <div class="color" v-if="detailData.color">
           <p class="title">颜色</p>
           <ul>
             <li class="item" @click="clickImg(item.child)" v-for="(item,index) in detailData.color" :key="index">
@@ -35,7 +35,7 @@
         <li class="item"><a href="javascript:;"  @click="showInfo" :class="{'disabled': this.dis,'active':this.showInfoData}">详情</a></li>
         <li class="item"><a href="javascript:;" @click="showInfos" :class="{'disabled': !this.dis,'active':this.showInfoDatas}">评论</a></li>
       </ul>
-      <div class="about-content">
+      <div class="about-content" v-if="detailData.details[0] || detailData.comments">
         <DetailInfo :data="detailData.details[0]" v-if="this.showInfoData"></DetailInfo>
         <Comment :data="detailData.comments"  v-if="this.showInfoDatas"></Comment>
       </div>
@@ -54,6 +54,7 @@
   import Service from '../components/Service';
   export default {
     name: 'Detail',
+    props: ['id'],
     data () {
       return {
         bigImg: [],

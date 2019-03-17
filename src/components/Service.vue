@@ -11,13 +11,19 @@
         <li class="service-item fl">
           <a href="">
             <span class="bag"></span>
-            <p class="dsc">7天无理由退货</p>
+            <p class="dsc">15天退货保障</p>
           </a>
         </li>
         <li class="service-item fl">
           <a href="">
             <span class="bag"></span>
-            <p class="dsc">7天无理由退货</p>
+            <p class="dsc">30天换货保障</p>
+          </a>
+        </li>
+        <li class="service-item fl">
+          <a href="">
+            <span class="bag"></span>
+            <p class="dsc">99元全场包邮</p>
           </a>
         </li>
       </ul>
@@ -34,11 +40,22 @@
 <style lang="less" scoped>
   .service{
     background-color: #fff;
-
+    .service-item:nth-of-type(1) .bag{
+      background-position: 0 -400px;
+    }
+    .service-item:nth-of-type(2) .bag{
+      background-position: 0 0px;
+    }
+    .service-item:nth-of-type(3) .bag{
+      background-position: 0 -240px;
+    }
+    .service-item:nth-of-type(4) .bag{
+      background-position: 0 -560px;
+    }
     .service-item{
       padding: 35px 0;
       box-sizing: border-box;
-      width: 33.33333%;
+      width: 25%;
       height: 195px;
       /*background-color: aqua;*/
       text-align: center;

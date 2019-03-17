@@ -54,7 +54,7 @@
           </div>
           <div class="payment-btn clearfix">
             <p><span class="iconfont icon">&#xe626;</span>安全支付</p>
-            <p class="fr">应付总额 <span>￥</span>.00</p>
+            <p class="fr">应付总额 <span>￥{{totalGoodsPrice}}</span>.00</p>
             <div><a href="javascript:;" class="fr btn" @click="submits">提交订单</a></div>
           </div>
         </div>
@@ -65,6 +65,7 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex';
   import Header from '../components/Header';
   import Footer from '../components/Footer';
   export default {
@@ -77,10 +78,13 @@
         times: null
       };
     },
+    computed: {
+      ...mapGetters([
+        'totalGoodsPrice'
+      ])
+    },
     components: {
       Header, Footer
-    },
-    computed: {
     },
     methods: {
       async getPaymentData () {

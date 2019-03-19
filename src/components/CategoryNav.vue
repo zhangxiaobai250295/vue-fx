@@ -131,15 +131,16 @@
     .img-leave{
       transform: scale(1,1);
     }
+    .img-enter-active{
+      transform: scale(1,1);
+      opacity: 1;
+      transition: all .2s linear;
+    }
     .img-enter{
       opacity: 0;
       transform: scale(0,0);
     }
-    .img-enter-active{
-      transform: scale(1,1);
-      opacity: 1;
-      transition: all .3s linear;
-    }
+
   }
   .hidden-bottom{
     position: fixed;
@@ -148,7 +149,7 @@
     width: 100%;
     padding: 0;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.2);
-    /*transition: all .1s linear;*/
+    transition: all .6s linear;
   }
   .hidden-list-item{
     height: 53px !important;
